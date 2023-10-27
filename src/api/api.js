@@ -28,31 +28,31 @@ class yodlrAPI {
 
     /* GET users listing. */
     static async getUsers() {
-        const res = await this.request(`/`);
+        const res = await this.request(`users/`);
         return res;
     }  
   
     /* Create a new user */
     static async createUser(data) {
-        const res = await this.request(`/`, data, "post");
+        const res = await this.request(`users/`, data, "post");
         return res;
     }  
     
     /* Get a specific user by id */
     static async getUser(id) {
-        const res = await this.request(`/${id}`);
+        const res = await this.request(`users/${id}`);
         return res;
     }  
     
     /* Delete a user by id */
     static async deleteUser(id) {
-        const res = await this.request(`/${id}`, {}, "delete");
+        const res = await this.request(`users/${id}`, {}, "delete");
         return res;
     }  
     
     /* Update a user by id */
     static async updateUser(data) {
-        const res = await this.request(`/${data.id}`, data, "put");
+        const res = await this.request(`users/${data.id}`, data, "put");
         return res;
     }  
     

@@ -11,7 +11,9 @@ const noUserSettings = [
     {text: 'Log In', path: '../login'}, 
     {text: 'Sign Up', path: '../signup'}
 ];
-const userSettings = ['Log Out'];
+const userSettings = [
+    {text: 'User Profile', path: '../profile'}
+];
 
 function Nav() {
     const [anchorElNav, setAnchorElNav] = useState(null);
@@ -33,6 +35,10 @@ function Nav() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogOut = () => {
+    setUser(null);
+  }
 
   return (
     <AppBar position="static">
@@ -146,17 +152,24 @@ function Nav() {
               onClose={handleCloseUserMenu}
             >
               {!user && noUserSettings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting.text} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
-                    <Link component={RouterLink} to={setting.path} underline="none">{setting.text}</Link>                  </Typography>
+                    <Link component={RouterLink} to={setting.path} underline="none">{setting.text}</Link>                  
+                    </Typography>
                 </MenuItem>
               ))}                
               {user && userSettings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting.text} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
-                    <Link component={RouterLink} to={setting.path} underline="none">{setting.text}</Link>                  </Typography>
+                    <Link component={RouterLink} to={setting.path} underline="none">{setting.text}</Link>                  
+                </Typography>
                 </MenuItem>
               ))}
+              {user && <MenuItem key='Log Out' onClick={handleLogOut}>
+                  <Typography textAlign="center">
+                    <Link component={RouterLink} to='../login' underline="none">Log Out</Link>                   
+                </Typography>
+                </MenuItem>}
             </Menu>
           </Box>
         </Toolbar>
