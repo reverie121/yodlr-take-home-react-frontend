@@ -11,13 +11,14 @@ function Profile() {
     const { user } = useContext(UserContext)
 
     useEffect(() => {
+        // If user is not logged in, go to log in page.
         if (!user) navigate("/login")
     });
 
     return(
         <Stack flexDirection="column" alignItems="center" m={2}>
-
-
+            {/* If user is logged in, display user data here */}
+            {user && 
             <Card component="form"
             raised 
             sx={{
@@ -49,7 +50,7 @@ function Profile() {
                 <Typography>First Name: {user.firstName}</Typography>
                 <Typography>Last Name: {user.lastName}</Typography>
                 <Typography>Email: {user.email}</Typography>
-            </Card>
+            </Card>}
     </Stack>
 
 )

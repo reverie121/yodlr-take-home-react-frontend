@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Box, CircularProgress, Stack, TextField, Typography } from "@mui/material";
+import { Button, Box, Card, CircularProgress, Stack, TextField, Typography } from "@mui/material";
 
 import yodlrAPI from "../api/api";
 import UserContext from "../context/UserContext";
 
-function SignupForm() {
+function Signup() {
 
     const { setUser } = useContext(UserContext)
 
@@ -25,11 +25,10 @@ function SignupForm() {
     const registerNewUser = async () => {
         // Create userData object for post request to backend.
         const userData = {firstName: formData.firstName, lastName: formData.lastName, email: formData.email};
-        // If successful, put user data.        
+        // If successful, put user data into state.        
         try {
             let userRes = await yodlrAPI.createUser(userData);
             setUser(userRes);
-            console.log(userRes)
             setLoading(false);
         }
         catch(err) {
@@ -69,7 +68,8 @@ function SignupForm() {
 
             {loading === false && 
             <Stack sx={{alignItems: "center"}}>
-                <Box component="form"
+                <Card component="form"
+                raised 
                 sx={{
                     display: "flex", 
                     flexDirection: "column",
@@ -106,10 +106,10 @@ function SignupForm() {
                         <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                     </Box>
 
-                </Box>
+                </Card>
             </Stack>}
         </>
     );
 };
 
-export default SignupForm;
+export default Signup;
