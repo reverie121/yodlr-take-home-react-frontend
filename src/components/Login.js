@@ -7,7 +7,7 @@ import UserContext from "../context/UserContext";
 
 function Login() {
 
-    const { user, setUser } = useContext(UserContext)
+    const { setUser } = useContext(UserContext)
 
     const navigate = useNavigate();
 

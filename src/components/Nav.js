@@ -6,7 +6,7 @@ import { AccountCircleOutlined, Groups2Rounded } from '@mui/icons-material';
 
 import UserContext from "../context/UserContext";
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [{text: 'Admin', path: '../admin'}];
 const noUserSettings = [
     {text: 'Log In', path: '../login'}, 
     {text: 'Sign Up', path: '../signup'}
@@ -44,12 +44,12 @@ function Nav() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <Groups2Rounded sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Groups2Rounded sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+
+        {/* Large Screen Logo and Page Menu */}          
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -93,17 +93,19 @@ function Nav() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">                    
+                    <Link component={RouterLink} to={page.path} underline="none">{page.text}</Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
+
+        {/* Small Screen Logo and Page Menu */}
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -115,20 +117,21 @@ function Nav() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Y
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+                <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 1, mx: 1.5, color: 'white', display: 'block' }}
+                    key={page.text}
+                >
+                    <Link fontSize="medium" underline="hover" component={RouterLink} to={page.path} color="primary.contrastText">{page.text}</Link>
+                </Button>
             ))}
           </Box>
 
+        {/* Settings Menu */}
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

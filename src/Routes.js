@@ -13,7 +13,7 @@ function AppRoutes() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/signup" element={<SignUp />} />
-            <Route exact path="/users" element={<UserList />} />
+            <Route exact path="/admin" element={<UserList />} />
             <Route exact path="/" element={<Home />} />
             <Route element={<p>Hmmm. I can't seem to find what you want.</p>} />
         </Routes>
